@@ -4,6 +4,7 @@
 
 from sys import argv, exit
 
+
 def test(res, pos):
     """ test """
     for i in res:
@@ -14,6 +15,7 @@ def test(res, pos):
         if (i[0] - i[1]) == (pos[0] - pos[1]):
             return False
     return True
+
 
 def iterar(res, n, row):
     """ iterar """
@@ -27,23 +29,26 @@ def iterar(res, n, row):
                 iterar(res, n, row + 1)
                 res.remove(pos)
 
+
 def salir(msg):
     """ salir """
     print(msg)
     exit(1)
+
 
 def inicio():
     """ inicio """
     if len(argv) != 2:
         salir("Usage: nqueens N")
     num = argv[1]
-    if num.isdigit() == False:
+    if not num.isdigit():
         salir("N must be a number")
     num = int(num)
     if num < 4:
         salir('N must be at least 4')
     res = []
     iterar(res, num, 0)
+
 
 if __name__ == '__main__':
     """ inicio """
