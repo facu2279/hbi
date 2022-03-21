@@ -1,50 +1,37 @@
 #!/usr/bin/python3
 """ Made by Facundo Diaz for Holberton School 2022"""
+import os
 
+print("TEST ERRORS\n---------")
+comando = './0-nqueens.py'
+print("TEST 1:\n", comando)
+print("EXPECTED:\nUsage: nqueens N")
+print("OUTPUT:")
+os.system(comando)
 
-from sys import argv
-from sys import exit as salida
+comando = './0-nqueens.py a'
+print("TEST 1:\n", comando)
+print("EXPECTED:\nN must be a number")
+print("OUTPUT:")
+os.system(comando)
 
-def test(res, pos):
-    """  """
-    for i in res:
-        if i[1] == pos[1]:
-            return False
-        if (i[0] + i[1]) == (pos[0] + pos[1]):
-            return False
-        if (i[0] - i[1]) == (pos[0] - pos[1]):
-            return False
-    return True
+comando = './0-nqueens.py 3'
+print("TEST 1:\n", comando)
+print("EXPECTED:\nN must be at least 4")
+print("OUTPUT:")
+os.system(comando)
 
-def iterar(res, n, row):
-    """ recusive """
-    if (row == n):
-        print(res)
-    else:
-        for col in range(n):
-            pos = [row, col]
-            if test(res, pos):
-                res.append(pos)
-                iterar(res, n, row + 1)
-                res.remove(pos)
+print("TEST SUCCESS\n---------")
+comando = './0-nqueens.py 4'
+print("TEST 1:\n", comando)
+salida = "[[0, 1], [1, 3], [2, 0], [3, 2]]\n[[0, 2], [1, 0], [2, 3], [3, 1]]"
+print("EXPECTED:\n" + salida)
+print("OUTPUT:")
+os.system(comando)
 
-def salir(msg):
-    print(msg)
-    exit(1)
-
-def main():
-    """ main """
-    if len(argv) != 2:
-        salir("Usage: nqueens N")
-    num = argv[1]
-    if not num.isdigit():
-        salir("N must be a number")
-    num = int(num)
-    if num < 4:
-        salir('N must be at least 4')
-    res = []
-    iterar(res, num, 0)
-
-if _name_ == '_main_':
-    """ inicio """
-    main()
+comando = './0-nqueens.py 6'
+print("TEST 1:\n", comando)
+salida = "[[0, 1], [1, 3], [2, 5], [3, 0], [4, 2], [5, 4]]\n[[0, 2], [1, 5], [2, 1], [3, 4], [4, 0], [5, 3]]\n[[0, 3], [1, 0], [2, 4], [3, 1], [4, 5], [5, 2]]\n[[0, 4], [1, 2], [2, 0], [3, 5], [4, 3], [5, 1]]"
+print("EXPECTED:\n" + salida)
+print("OUTPUT:")
+os.system(comando)

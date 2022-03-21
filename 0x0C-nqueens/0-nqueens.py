@@ -5,7 +5,7 @@
 from sys import argv, exit
 
 def test(res, pos):
-    """  """
+    """ test """
     for i in res:
         if i[1] == pos[1]:
             return False
@@ -16,7 +16,7 @@ def test(res, pos):
     return True
 
 def iterar(res, n, row):
-    """ recusive """
+    """ iterar """
     if (row == n):
         print(res)
     else:
@@ -28,15 +28,16 @@ def iterar(res, n, row):
                 res.remove(pos)
 
 def salir(msg):
+    """ salir """
     print(msg)
     exit(1)
 
 def inicio():
-    """ main """
+    """ inicio """
     if len(argv) != 2:
         salir("Usage: nqueens N")
     num = argv[1]
-    if not num.isdigit():
+    if num.isdigit() == False:
         salir("N must be a number")
     num = int(num)
     if num < 4:
