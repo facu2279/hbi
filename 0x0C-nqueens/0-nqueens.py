@@ -1,49 +1,51 @@
 #!/usr/bin/python3
-""" Made by Facundo Diaz for Holberton School 2022"""
+""" by Facundo Diaz """
+
+import sys
 
 
-from sys import argv, exit
-
-def test(res, pos):
-    """  """
-    for i in res:
-        if i[1] == pos[1]:
+def check(res, pos):
+    """ checks with other queens """
+    for q in res:
+        if q[1] == pos[1]:
             return False
-        if (i[0] + i[1]) == (pos[0] + pos[1]):
+        if (q[0] + q[1]) == (pos[0] + pos[1]):
             return False
-        if (i[0] - i[1]) == (pos[0] - pos[1]):
+        if (q[0] - q[1]) == (pos[0] - pos[1]):
             return False
     return True
 
-def iterar(res, n, row):
+
+def backtracking(res, n, row):
     """ recusive """
     if (row == n):
         print(res)
     else:
         for col in range(n):
             pos = [row, col]
-            if test(res, pos):
+            if check(res, pos):
                 res.append(pos)
-                iterar(res, n, row + 1)
+                backtracking(res, n, row + 1)
                 res.remove(pos)
 
-def salir(msg):
-    print(msg)
-    exit(1)
 
-def main():
+def main(n):
     """ main """
-    if len(argv) != 2:
-        salir("Usage: nqueens N")
-    num = argv[1]
-    if not num.isdigit():
-        salir("N must be a number")
-    num = int(num)
-    if num < 4:
-        salir('N must be at least 4')
     res = []
-    iterar(res, num, 0)
+    backtracking(res, n, 0)
 
 if _name_ == '_main_':
-    """ inicio """
-    main()
+    """ aaa """
+    if len(sys.argv) != 2:
+        print('Usage: nqueens N')
+        sys.exit(1)
+    code = sys.argv[1]
+    if not code.isdigit():
+        print('N must be a number')
+        sys.exit(1)
+    code = int(code)
+    if code < 4:
+        print('N must be at least 4')
+        sys.exit(1)
+
+    main(code)
