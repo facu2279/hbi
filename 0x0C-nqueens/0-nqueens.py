@@ -1,51 +1,74 @@
 #!/usr/bin/python3
-""" by Facundo Diaz """
+"""
+Exercise:
+N queens
+"""
 
 import sys
 
 
-def check(res, pos):
-    """ checks with other queens """
-    for q in res:
-        if q[1] == pos[1]:
+def printboard(board):
+    """Function that print the answer"""
+    solve = []
+    for i in range(len(board)):
+        for j in range(len(board)):
+            if board[i][j] == 1:
+                solve.append([i, j])
+    print(solve)
+
+
+def isSafe(board, row, col, n):
+    """
+    Helper function for checking if a queen can be placed on board
+    """
+
+    for c in range(col):
+        if board[row][c] == 1:
             return False
-        if (q[0] + q[1]) == (pos[0] + pos[1]):
+
+    for r, c in zip(range(row, -1, -1),
+                    range(col, -1, -1)):
+        if board[r][c] == 1:
             return False
-        if (q[0] - q[1]) == (pos[0] - pos[1]):
+
+    for r, c in zip(range(row, n, 1),
+                    range(col, -1, -1)):
+        if board[r][c] == 1:
             return False
+
     return True
 
 
-def backtracking(res, n, row):
-    """ recusive """
-    if (row == n):
-        print(res)
-    else:
-        for col in range(n):
-            pos = [row, col]
-            if check(res, pos):
-                res.append(pos)
-                backtracking(res, n, row + 1)
-                res.remove(pos)
+def solution(board, col, n):
+    """
+    Function solution
+    """
+    if col == n:
+        printboard(board)
+        return True
+    c = False
+    for i in range(n):
+        if isSafe(board, i, col, n):
+            board[i][col] = 1
+            c = solution(board, col + 1, n) or c
+            board[i][col] = 0
+    return c
 
 
-def main(n):
-    """ main """
-    res = []
-    backtracking(res, n, 0)
+if __name__ == "__main__":
+    """ Program N qeen """
 
-if _name_ == '_main_':
-    """ aaa """
-    if len(sys.argv) != 2:
-        print('Usage: nqueens N')
+    # Restriction in the program
+    if not len(sys.argv) == 2:
+        print("Usage: nqueens N")
         sys.exit(1)
-    code = sys.argv[1]
-    if not code.isdigit():
-        print('N must be a number')
+    if not (sys.argv[1]).isdigit():
+        print("N must be a number")
         sys.exit(1)
-    code = int(code)
-    if code < 4:
-        print('N must be at least 4')
+    n = int(sys.argv[1])
+    if n < 4:
+        print("N must be at least 4")
         sys.exit(1)
 
-    main(code)
+    board = [[0 for i in range(n)] for j in range(n)]
+    solution(board, 0, n)
