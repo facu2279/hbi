@@ -4,9 +4,14 @@
 
 from sys import argv, exit
 
+<<<<<<< HEAD
+def test(res, pos):
+    """  """
+=======
 
 def test(res, pos):
     """ test """
+>>>>>>> a270bea3dab26a7f166465453086ac54409f5c99
     for i in res:
         if i[1] == pos[1]:
             return False
@@ -16,9 +21,14 @@ def test(res, pos):
             return False
     return True
 
+<<<<<<< HEAD
+def iterar(res, n, row):
+    """ recusive """
+=======
 
 def iterar(res, n, row):
     """ iterar """
+>>>>>>> a270bea3dab26a7f166465453086ac54409f5c99
     if (row == n):
         print(res)
     else:
@@ -29,6 +39,14 @@ def iterar(res, n, row):
                 iterar(res, n, row + 1)
                 res.remove(pos)
 
+<<<<<<< HEAD
+def salir(msg):
+    print(msg)
+    exit(1)
+
+def main():
+    """ main """
+=======
 
 def salir(msg):
     """ salir """
@@ -38,6 +56,7 @@ def salir(msg):
 
 def inicio():
     """ inicio """
+>>>>>>> a270bea3dab26a7f166465453086ac54409f5c99
     if len(argv) != 2:
         salir("Usage: nqueens N")
     num = argv[1]
@@ -49,7 +68,13 @@ def inicio():
     res = []
     iterar(res, num, 0)
 
+<<<<<<< HEAD
+if __name__ == '__main__':
+    """ inicio """
+    main()
+=======
 
 if __name__ == '__main__':
     """ inicio """
     inicio()
+>>>>>>> a270bea3dab26a7f166465453086ac54409f5c99
